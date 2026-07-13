@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#11161c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Cube Coach</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">OFFLINE • INTERACTIVE • BEGINNER GUIDE</div>
+        <h1>Cube Coach</h1>
+      </div>
+      <button id="installBtn" class="btn ghost hidden">Install</button>
+    </header>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-view="simulator">Simulator</button>
+      <button class="tab" data-view="guide">Solve Guide</button>
+      <button class="tab" data-view="notation">Notation</button>
+    </nav>
+
+    <main>
+      <section id="simulator" class="view active">
+        <div class="layout">
+          <aside class="panel controls-panel">
+            <div class="panel-title"><span>01</span> Cube controls</div>
+            <div class="button-row">
+              <button id="scrambleBtn" class="btn primary">Scramble</button>
+              <button id="resetBtn" class="btn">Reset</button>
+              <button id="undoBtn" class="btn">Undo</button>
+            </div>
+
+            <label class="field-label" for="scrambleLength">Scramble length</label>
+            <div class="range-row">
+              <input id="scrambleLength" type="range" min="5" max="30" value="20" />
+              <output id="scrambleLengthValue">20</output>
+            </div>
+
+            <div class="subheading">Face turns</div>
+            <div id="moveGrid" class="move-grid"></div>
+
+            <div class="subheading">Cube view</div>
+            <div class="button-row wrap">
+              <button class="btn view-preset" data-yaw="-35" data-pitch="-25">Front</button>
+              <button class="btn view-preset" data-yaw="55" data-pitch="-25">Right</button>
+              <button class="btn view-preset" data-yaw="-125" data-pitch="-25">Back</button>
+              <button class="btn view-preset" data-yaw="-35" data-pitch="55">Top</button>
+            </div>
+
+            <div class="status-card">
+              <span class="status-dot" id="statusDot"></span>
+              <div>
+                <strong id="statusText">Solved</strong>
+                <small id="moveCount">0 moves</small>
+              </div>
+            </div>
+          </aside>
+
+          <section class="panel viewport-panel">
+            <div class="panel-title"><span>02</span> Interactive cube</div>
+            <div class="canvas-wrap">
+              <canvas id="cubeCanvas" aria-label="Interactive 3D cube"></canvas>
+              <div class="canvas-help">Drag to rotate view • Use buttons to turn faces</div>
+            </div>
+            <div class="history-wrap">
+              <div class="history-head">
+                <span>Move history</span>
+                <button id="clearHistoryBtn" class="text-btn">Clear</button>
+              </div>
+              <div id="history" class="history">No moves yet</div>
+            </div>
+          </section>
+
+          <aside class="panel trainer-panel">
+            <div class="panel-title"><span>03</span> Algorithm trainer</div>
+            <p class="muted">Paste an algorithm, then step through it one move at a time.</p>
+            <textarea id="algorithmInput" rows="4" spellcheck="false">R U R' U'</textarea>
+            <div class="button-row">
+              <button id="loadAlgorithmBtn" class="btn primary">Load</button>
+              <button id="nextAlgorithmBtn" class="btn">Next move</button>
+            </div>
+            <div id="algorithmQueue" class="algorithm-queue">R U R' U'</div>
+
+            <div class="subheading">Practice algorithms</div>
+            <div id="practiceList" class="practice-list"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="guide" class="view">
+        <div class="guide-layout">
+          <aside class="panel guide-nav">
+            <div class="panel-title"><span>01</span> Beginner method</div>
+            <div id="guideSteps" class="guide-steps"></div>
+          </aside>
+          <article class="panel guide-content">
+            <div class="panel-title"><span>02</span> Current step</div>
+            <div id="guideArticle"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="notation" class="view">
+        <div class="notation-grid" id="notationGrid"></div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

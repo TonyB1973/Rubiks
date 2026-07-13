@@ -1,0 +1,14 @@
+{
+  "name":"Cube Coach — 3×3 Simulator & Guide",
+  "short_name":"Cube Coach",
+  "description":"An offline interactive 3×3 cube simulator and beginner solving guide.",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#0c1015",
+  "theme_color":"#11161c",
+  "orientation":"any",
+  "icons":[
+    {"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"},
+    {"src":"icons/apple-touch-icon.svg","sizes":"180x180","type":"image/svg+xml"}
+  ]
+}
